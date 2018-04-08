@@ -145,7 +145,7 @@ def Partition(ages, weights, bin_size=2):
         bin = bin_size * math.floor(age / bin_size) + bin_size/2.0
         weight_dict.setdefault(bin, []).append(weight)
 
-    for bin, bin_weights in weight_dict.iteritems():
+    for bin, bin_weights in weight_dict.items():
         try:
             mean = thinkstats.Mean(bin_weights)
         except ZeroDivisionError:
@@ -207,14 +207,14 @@ def DifferenceInMeans(firsts, others, attr):
     Prints summary statistics.
     """
     firsts_mean = thinkstats.Mean(getattr(firsts, attr))
-    print 'First babies, %s, trimmed mean:' % attr, firsts_mean
+    print('First babies, %s, trimmed mean:' % attr, firsts_mean)
 
     others_mean = thinkstats.Mean(getattr(others, attr))
-    print 'Other babies, %s, trimmed mean:' % attr, others_mean
+    print('Other babies, %s, trimmed mean:' % attr, others_mean)
 
     diff = others_mean - firsts_mean
-    print 'Difference in means:', diff
-    print
+    print('Difference in means:', diff)
+    print()
 
     return diff
 
@@ -225,18 +225,18 @@ def ComputeLeastSquares(ages, weights):
     Prints summary statistics.
     """
     # compute the correlation between age and weight
-    print 'Pearson correlation', correlation.Corr(ages, weights)
-    print 'Spearman correlation', correlation.SpearmanCorr(ages, weights)
+    print('Pearson correlation', correlation.Corr(ages, weights))
+    print('Spearman correlation', correlation.SpearmanCorr(ages, weights))
 
     # compute least squares fit
     inter, slope = correlation.LeastSquares(ages, weights)
-    print '(inter, slope):', inter, slope
+    print('(inter, slope):', inter, slope)
 
     res = correlation.Residuals(ages, weights, inter, slope)
     R2 = correlation.CoefDetermination(weights, res)
 
-    print 'R^2', R2
-    print
+    print('R^2', R2)
+    print()
     return inter, slope, R2
 
 
@@ -244,8 +244,8 @@ def main(name, data_dir=''):
     pool, firsts, others = MakeTables(data_dir)
 
     for table in [pool, firsts, others]:
-        print table.name, len(table.records),
-        print len(table.ages), len(table.weights)
+        print(table.name, len(table.records), end=' ')
+        print(len(table.ages), len(table.weights))
 
     # compute differences in mean age and weight
     age_diff = DifferenceInMeans(firsts, others, 'ages')
@@ -259,9 +259,9 @@ def main(name, data_dir=''):
 
     # see how much of the weight difference is explained by age
     weight_diff_explained = age_diff * slope
-    print 'Weight difference explained by age:', weight_diff_explained
-    print 'Fraction explained:', weight_diff_explained / weight_diff
-    print
+    print('Weight difference explained by age:', weight_diff_explained)
+    print('Fraction explained:', weight_diff_explained / weight_diff)
+    print()
 
     # make a table of mean weight for 5-year age bins
     weight_dict = Partition(ages, weights)
@@ -277,7 +277,7 @@ def main(name, data_dir=''):
 def MakeLinePlot(age_bins):
     xs = []
     ys = []
-    for bin, weights in sorted(age_bins.iteritems()):
+    for bin, weights in sorted(age_bins.items()):
         xs.append(bin)
         ys.append(thinkstats.Mean(weights))
 

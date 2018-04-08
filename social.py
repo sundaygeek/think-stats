@@ -78,19 +78,19 @@ def ReadFile(filename='soc-Slashdot0902.txt.gz', n=None):
 
 def Summarize(srcs):
     """Computes the number of edges for each source."""
-    lens = [len(t) for t in srcs.itervalues()]
+    lens = [len(t) for t in srcs.values()]
     mu, sigma2 = thinkstats.MeanVar(lens)
-    print mu, math.sqrt(sigma2)
+    print(mu, math.sqrt(sigma2))
     return lens
 
 
 def MakePmfs(lens):
     """Computes the PMF of the given list and the biased PMF."""
     pmf = Pmf.MakePmfFromList(lens, 'slashdot')
-    print 'unbiased mean', pmf.Mean()
+    print('unbiased mean', pmf.Mean())
 
     biased_pmf = BiasPmf(pmf, 'biased')
-    print 'biased mean', biased_pmf.Mean()
+    print('biased mean', biased_pmf.Mean())
 
     return pmf, biased_pmf
 
@@ -98,13 +98,13 @@ def MakePmfs(lens):
 def MakeFigures(pmf, biased_pmf):
     """Makes figures showing the CDF of the biased and unbiased PMFs"""
     cdf = Cdf.MakeCdfFromPmf(pmf, 'unbiased')
-    print 'unbiased median', cdf.Percentile(50)
-    print 'percent < 100', cdf.Prob(100)
-    print 'percent < 1000', cdf.Prob(1000)
+    print('unbiased median', cdf.Percentile(50))
+    print('percent < 100', cdf.Prob(100))
+    print('percent < 1000', cdf.Prob(1000))
 
 
     biased_cdf = Cdf.MakeCdfFromPmf(biased_pmf, 'biased')
-    print 'biased median', biased_cdf.Percentile(50)
+    print('biased median', biased_cdf.Percentile(50))
 
     myplot.Clf()
     myplot.Cdfs([cdf, biased_cdf])
@@ -156,7 +156,7 @@ def main(name):
     pmf, biased_pmf = MakePmfs(lens)
     MakeFigures(pmf, biased_pmf)
     prob = PmfProbLess(pmf, biased_pmf)
-    print prob
+    print(prob)
 
 
 if __name__ == '__main__':

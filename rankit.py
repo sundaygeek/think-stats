@@ -43,7 +43,7 @@ def EstimateRankits(n=6, m=1000):
     Returns: list of n rankits
     """
     t = Samples(n, m)
-    t = zip(*t)
+    t = list(zip(*t))
     means = [thinkstats.Mean(x) for x in t]
     return means
 
@@ -71,7 +71,7 @@ def MakeNormalPlot(ys, root=None, line_options={}, **options):
 
 def main():
     means = EstimateRankits(84)
-    print means
+    print(means)
     
 
 if __name__ == "__main__":

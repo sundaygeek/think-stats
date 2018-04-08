@@ -40,11 +40,11 @@ class _DictWrapper(object):
         dictionaries are the values of the Hist/Pmf, and the
         values are frequencies/probabilities.
         """
-        return self.d.keys()
+        return list(self.d.keys())
 
     def Items(self):
         """Gets an unsorted sequence of (value, freq/prob) pairs."""
-        return self.d.items()
+        return list(self.d.items())
 
     def Render(self):
         """Generates a sequence of points suitable for plotting.
@@ -52,12 +52,12 @@ class _DictWrapper(object):
         Returns:
             tuple of (sorted value sequence, freq/prob sequence)
         """
-        return zip(*sorted(self.Items()))
+        return list(zip(*sorted(self.Items())))
 
     def Print(self):
         """Prints the values and freqs/probs in ascending order."""
-        for val, prob in sorted(self.d.iteritems()):
-            print val, prob
+        for val, prob in sorted(self.d.items()):
+            print(val, prob)
 
     def Set(self, x, y=0):
         """Sets the freq/prob associated with the value x.
@@ -98,12 +98,12 @@ class _DictWrapper(object):
 
     def Total(self):
         """Returns the total of the frequencies/probabilities in the map."""
-        total = sum(self.d.itervalues())
+        total = sum(self.d.values())
         return total
 
     def MaxLike(self):
         """Returns the largest frequency/probability in the map."""
-        return max(self.d.itervalues())
+        return max(self.d.values())
 
 
 class Hist(_DictWrapper):
@@ -135,7 +135,7 @@ class Hist(_DictWrapper):
 
     def Freqs(self):
         """Gets an unsorted sequence of frequencies."""
-        return self.d.values()
+        return list(self.d.values())
 
     def IsSubset(self, other):
         """Checks whether the values in this histogram are a subset of
@@ -182,7 +182,7 @@ class Pmf(_DictWrapper):
 
     def Probs(self):
         """Gets an unsorted sequence of probabilities."""
-        return self.d.values()
+        return list(self.d.values())
 
     def Normalize(self, fraction=1.0):
         """Normalizes this PMF so the sum of all probs is 1.
@@ -211,7 +211,7 @@ class Pmf(_DictWrapper):
             
         target = random.random()
         total = 0.0
-        for x, p in self.d.iteritems():
+        for x, p in self.d.items():
             total += p
             if total >= target:
                 return x
@@ -226,7 +226,7 @@ class Pmf(_DictWrapper):
             float mean
         """
         mu = 0.0
-        for x, p in self.d.iteritems():
+        for x, p in self.d.items():
             mu += p * x
         return mu
 
@@ -244,20 +244,20 @@ class Pmf(_DictWrapper):
             mu = self.Mean()
             
         var = 0.0
-        for x, p in self.d.iteritems():
+        for x, p in self.d.items():
             var += p * (x - mu)**2
         return var
 
     def Log(self):
         """Log transforms the probabilities."""
         m = self.MaxLike()
-        for x, p in self.d.iteritems():
+        for x, p in self.d.items():
             self.Set(x, math.log(p/m))
 
     def Exp(self):
         """Exponentiates the probabilities."""
         m = self.MaxLike()
-        for x, p in self.d.iteritems():
+        for x, p in self.d.items():
             self.Set(x, math.exp(p-m))
 
 

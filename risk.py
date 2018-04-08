@@ -69,22 +69,22 @@ def ComputeRelativeRisk(first_pmf, other_pmf):
     other_pmf: Pmf object
     """
 
-    print 'Risks:'
+    print('Risks:')
     funcs = [ProbEarly, ProbOnTime, ProbLate]
     risks = {}
     for func in funcs:
         for pmf in [first_pmf, other_pmf]:
             prob = func(pmf)
             risks[func.__name__, pmf.name] = prob
-            print func.__name__, pmf.name, prob
+            print(func.__name__, pmf.name, prob)
 
-    print
-    print 'Risk ratios (first babies / others):'
+    print()
+    print('Risk ratios (first babies / others):')
     for func in funcs:
         try:
             ratio = (risks[func.__name__, 'first babies'] / 
                      risks[func.__name__, 'others'])
-            print func.__name__, ratio
+            print(func.__name__, ratio)
         except ZeroDivisionError:
             pass
 

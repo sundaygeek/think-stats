@@ -201,14 +201,14 @@ def MakeSpaghetti(iters=1000, lines=100, n=300, thresh=0.05, index=2):
     for i in range(iters):
         lists = Simulate(0.5, 0.5, n)
         pairs = lists[index]
-        xs, ys = zip(*pairs)
+        xs, ys = list(zip(*pairs))
         if Crosses(ys, thresh):
             count += 1
 
         if i < lines:
             pyplot.plot(xs, ys, alpha=0.2)
     
-    print iters, count / iters
+    print(iters, count / iters)
 
     labels = ['Difference in success rate', 'chi-squared stat', 'p-value']
 

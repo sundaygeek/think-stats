@@ -63,7 +63,7 @@ def RunTest(root,
     prior = 0.5
     pe = prior*peha + (1-prior)*peh0
     posterior = prior*peha / pe
-    print 'Posterior', posterior
+    print('Posterior', posterior)
 
 
 def Test(root, actual1, actual2, model1, model2, iters=1000, plot=False):
@@ -85,12 +85,12 @@ def Test(root, actual1, actual2, model1, model2, iters=1000, plot=False):
     delta = abs(delta)
 
     cdf, pvalue = PValue(model1, model2, n, m, delta, iters)
-    print 'n:', n
-    print 'm:', m
-    print 'mu1', mu1
-    print 'mu2', mu2
-    print 'delta', delta
-    print 'p-value', pvalue
+    print('n:', n)
+    print('m:', m)
+    print('mu1', mu1)
+    print('mu2', mu2)
+    print('delta', delta)
+    print('p-value', pvalue)
 
     if plot:
         PlotCdf(root, cdf, delta)
@@ -129,7 +129,7 @@ def PValue(model1, model2, n, m, delta, iters=1000):
     """
     deltas = [Resample(model1, model2, n, m) for i in range(iters)]
     mean_var = thinkstats.MeanVar(deltas)
-    print '(Mean, Var) of resampled deltas', mean_var
+    print('(Mean, Var) of resampled deltas', mean_var)
 
     cdf = Cdf.MakeCdfFromList(deltas)
 
@@ -138,7 +138,7 @@ def PValue(model1, model2, n, m, delta, iters=1000):
     right = 1.0 - cdf.Prob(delta)
     
     pvalue = left + right
-    print 'Tails (left, right, total):', left, right, left+right
+    print('Tails (left, right, total):', left, right, left+right)
 
     return cdf, pvalue
 
@@ -236,7 +236,7 @@ def main():
     # get the data
     pool, firsts, others = cumulative.MakeTables()
     mean_var = thinkstats.MeanVar(pool.lengths)
-    print '(Mean, Var) of pooled data', mean_var
+    print('(Mean, Var) of pooled data', mean_var)
     
     # run the test
     RunTest('length', 

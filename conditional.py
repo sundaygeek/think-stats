@@ -57,7 +57,7 @@ def MakeFigure(firsts, others):
     """Makes a figure showing...
     """
 
-    weeks = range(35, 46)
+    weeks = list(range(35, 46))
     
     # probs is a map from table name to list of conditional probabilities
     probs = {}
@@ -67,14 +67,14 @@ def MakeFigure(firsts, others):
         for week in weeks:
             cond = ConditionOnWeeks(table.pmf, week)
             prob = cond.Prob(week)
-            print week, prob, table.pmf.name
+            print(week, prob, table.pmf.name)
             probs[name].append(prob)
             
     # make a plot with one line for each table
     pyplot.clf()        
-    for name, ps in probs.iteritems():
+    for name, ps in probs.items():
         pyplot.plot(weeks, ps, label=name)
-        print name, ps
+        print(name, ps)
         
     myplot.Save(root='conditional',
                 xlabel='weeks',
@@ -90,7 +90,7 @@ def RelativeRisk(first, others, week=38):
     others: Pregnancies table
     week: 
     """
-    print type(first)
+    print(type(first))
     first_cond = ConditionOnWeeks(first.pmf, week, 'first babies')
     other_cond = ConditionOnWeeks(others.pmf, week, 'others')
 

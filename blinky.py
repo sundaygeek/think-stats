@@ -108,7 +108,7 @@ def ProbWinning(pbA, pbC):
 
 
 def main():
-    print 'pae', 0.3 / (0.3 + 3.0 / 13)
+    print('pae', 0.3 / (0.3 + 3.0 / 13))
 
     doorA = MakeUniformSuite(0.0, 1.0, 101, name='Door A')
     evidence = 3, 2
@@ -118,7 +118,7 @@ def main():
     evidence = 3, 10
     Update(doorC, evidence)
 
-    print TotalProbability(doorA, doorC, ProbWinning)
+    print(TotalProbability(doorA, doorC, ProbWinning))
 
     # plot the posterior distributions
     myplot.Pmfs([doorA, doorC])

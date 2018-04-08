@@ -63,7 +63,7 @@ def Update(suite, evidence):
     """
     for hypo in suite.Values():
         likelihood = Likelihood(evidence, hypo)
-        print hypo, likelihood
+        print(hypo, likelihood)
         suite.Mult(hypo, likelihood)
     suite.Normalize()
 

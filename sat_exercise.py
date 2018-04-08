@@ -144,7 +144,7 @@ def main(script):
     # look up Alice's raw score
     alice = 780
     alice_correct = exam.GetRawScore(alice)
-    print 'Alice raw score', alice_correct
+    print('Alice raw score', alice_correct)
 
     # display the distribution of raw scores for the population
     prior = exam.GetPrior()

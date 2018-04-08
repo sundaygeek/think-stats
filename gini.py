@@ -40,35 +40,35 @@ def RelativeMeanDifference(pmf, mean=None):
         for v2, p2 in pmf.Items():
             diff.Incr(abs(v1-v2), p1*p2)
 
-    print PmfMean(diff), mean
+    print(PmfMean(diff), mean)
 
     return PmfMean(diff) / mean
 
 
 def SummarizeData(pmf, cdf):
     mean = PmfMean(pmf)
-    print 'mean:', mean
+    print('mean:', mean)
 
     median = cdf.Percentile(50)
-    print 'median:', median
+    print('median:', median)
 
     fraction_below_mean = cdf.Prob(mean)
-    print 'fraction below mean:', fraction_below_mean
+    print('fraction below mean:', fraction_below_mean)
 
     m2 = PmfMoment(pmf, mean, 2)
     m3 = PmfMoment(pmf, mean, 3)
 
     sigma = math.sqrt(m2)
-    print 'sigma:', sigma
+    print('sigma:', sigma)
 
     g1 = m3 / m2**(3/2)
-    print 'skewness:', g1
+    print('skewness:', g1)
 
     gp = 3 * (mean - median) / sigma
-    print 'Pearsons skewness:', gp
+    print('Pearsons skewness:', gp)
 
     gini = RelativeMeanDifference(pmf) / 2
-    print 'gini', gini
+    print('gini', gini)
 
 def main(script, *args):
     data = irs.ReadIncomeFile()

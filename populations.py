@@ -7,7 +7,7 @@ License: GNU GPLv3 http://www.gnu.org/licenses/gpl.html
 
 import csv
 import sys
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 
 def ReadData(filename='populations.csv'):
@@ -24,8 +24,8 @@ def ReadData(filename='populations.csv'):
     try:
         fp = open(filename)
     except IOError:
-        print 'Did not find populations.csv.  You can download'
-        print 'it from http://thinkstats.com/populations.csv'
+        print('Did not find populations.csv.  You can download')
+        print('it from http://thinkstats.com/populations.csv')
         return []
 
     reader = csv.reader(fp)
@@ -55,7 +55,7 @@ def main(script, *args):
     pops = ReadData()
 
     for pop in pops:
-        print pop
+        print(pop)
 
 
 if __name__ == '__main__':

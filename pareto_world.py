@@ -33,7 +33,7 @@ def MakeParetoCdf():
     xmin = 100
     alpha = 1.7
     ps = [ParetoCdf(x, alpha, xmin) for x in xs]
-    print 'Median', ParetoMedian(xmin, alpha)
+    print('Median', ParetoMedian(xmin, alpha))
     
     pyplot.clf()
     pyplot.plot(xs, ps, linewidth=2)
@@ -87,7 +87,7 @@ def TallestPareto(iters=2, n=10000, xmin=100, alpha=1.7):
 def main():
     MakeFigure()
     MakeParetoCdf()
-    print TallestPareto(iters=2)
+    print(TallestPareto(iters=2))
 
 
 if __name__ == "__main__":

@@ -154,8 +154,8 @@ def PrintSummary(res):
         if line.startswith('Coefficients'):
             flag = True
         if flag:
-            print line
-    print
+            print(line)
+    print()
 
 
 def main(script, model_number=0):
@@ -181,7 +181,7 @@ def main(script, model_number=0):
               'weights ~ first + ages + ages2']
 
     model = models[model_number]
-    print model
+    print(model)
     RunModel(model)
 
 

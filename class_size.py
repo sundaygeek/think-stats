@@ -72,18 +72,18 @@ def ClassSizes():
 
     # form the pmf
     pmf = Pmf.MakePmfFromDict(d, 'actual')
-    print 'mean', pmf.Mean()
-    print 'var', pmf.Var()
+    print('mean', pmf.Mean())
+    print('var', pmf.Var())
     
     # compute the biased pmf
     biased_pmf = BiasPmf(pmf, 'observed')
-    print 'mean', biased_pmf.Mean()
-    print 'var', biased_pmf.Var()
+    print('mean', biased_pmf.Mean())
+    print('var', biased_pmf.Var())
 
     # unbias the biased pmf
     unbiased_pmf = UnbiasPmf(biased_pmf, 'unbiased')
-    print 'mean', unbiased_pmf.Mean()
-    print 'var', unbiased_pmf.Var()
+    print('mean', unbiased_pmf.Mean())
+    print('var', unbiased_pmf.Var())
 
     # plot the Pmfs
     myplot.Pmfs([pmf, biased_pmf])

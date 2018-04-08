@@ -65,7 +65,7 @@ def main():
     data = [1.5, 2, 3, 4, 5, 12]
 
     suite.UpdateSet(data)
-    print 'Mean of the posterior distribution:', suite.Mean()
+    print('Mean of the posterior distribution:', suite.Mean())
 
     # plot the posterior distribution
     thinkplot.Pmf(suite)

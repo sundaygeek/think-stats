@@ -86,16 +86,16 @@ def Summarize(data_dir):
     table, firsts, others = MakeTables(data_dir)
     ProcessTables(firsts, others)
         
-    print 'Number of first babies', firsts.n
-    print 'Number of others', others.n
+    print('Number of first babies', firsts.n)
+    print('Number of others', others.n)
 
     mu1, mu2 = firsts.mu, others.mu
 
-    print 'Mean gestation in weeks:' 
-    print 'First babies', mu1 
-    print 'Others', mu2
+    print('Mean gestation in weeks:') 
+    print('First babies', mu1) 
+    print('Others', mu2)
     
-    print 'Difference in days', (mu1 - mu2) * 7.0
+    print('Difference in days', (mu1 - mu2) * 7.0)
 
 
 def main(name, data_dir='.'):

@@ -7,7 +7,7 @@ License: GNU GPLv3 http://www.gnu.org/licenses/gpl.html
 
 import math
 import numpy
-import cPickle
+import pickle
 import random
 
 import brfss
@@ -36,7 +36,7 @@ def MakeUniformPrior(t, num_points, label, spread=3.0):
     xbar, S2 = thinkstats.MeanVar(t)
     sighat = math.sqrt(S2)
 
-    print xbar, sighat, sighat / xbar
+    print(xbar, sighat, sighat / xbar)
 
     # compute standard error for mu and the range of ms
     stderr_xbar = sighat / math.sqrt(n)
@@ -69,7 +69,7 @@ def LogUpdate(suite, evidence):
     for hypo in suite.Values():
         likelihood = LogLikelihood(evidence, hypo)
         suite.Incr(hypo, likelihood)
-    print suite.Total()
+    print(suite.Total())
 
 
 def LogLikelihood(evidence, hypo):
@@ -199,7 +199,7 @@ def PlotCoefVariation(suites):
     pyplot.clf()
 
     pmfs = {}
-    for label, suite in suites.iteritems():
+    for label, suite in suites.items():
         pmf = ComputeCoefVariation(suite)
         cdf = Cdf.MakeCdfFromPmf(pmf, label)
         myplot.Cdf(cdf)
@@ -211,14 +211,14 @@ def PlotCoefVariation(suites):
                 xlabel='cv',
                 ylabel='CDF')
 
-    print 'female bigger', ProbBigger(pmfs['female'], pmfs['male'])
-    print 'male bigger', ProbBigger(pmfs['male'], pmfs['female'])
+    print('female bigger', ProbBigger(pmfs['female'], pmfs['male']))
+    print('male bigger', ProbBigger(pmfs['male'], pmfs['female']))
 
 
 def PlotCdfs(samples):
     """Make CDFs showing the distribution of outliers."""
     cdfs = []
-    for label, sample in samples.iteritems():
+    for label, sample in samples.items():
         outliers = [x for x in sample if x < 150]
 
         cdf = Cdf.MakeCdfFromList(outliers, label)
@@ -238,7 +238,7 @@ def NormalProbPlot(samples):
 
     markers = dict(male='b', female='g')
 
-    for label, sample in samples.iteritems():
+    for label, sample in samples.items():
         NormalPlot(sample, label, markers[label], jitter=0.0)
     
     myplot.Save(show=True,
@@ -319,14 +319,14 @@ def DumpHeights(data_dir='.', n=10000):
     [d[r.sex].append(r.htm3) for r in resp.records if r.htm3 != 'NA']
 
     fp = open('bayes_height_data.pkl', 'wb')
-    cPickle.dump(d, fp)
+    pickle.dump(d, fp)
     fp.close()
 
 
 def LoadHeights():
     """Read the pickled height data."""
     fp = open('bayes_height_data.pkl', 'r')
-    d = cPickle.load(fp)
+    d = pickle.load(fp)
     fp.close()
     return d
 
@@ -335,11 +335,11 @@ def Winsorize(xs, p=0.01):
     """Compresses outliers."""
     cdf = Cdf.MakeCdfFromList(xs)
     low, high = cdf.Value(p), cdf.Value(1-p)
-    print low, high
+    print(low, high)
 
     outliers = [x for x in xs if x < low or x > high]
     outliers.sort()
-    print outliers
+    print(outliers)
 
     wxs = [min(max(low, x), high) for x in xs]
     return wxs
@@ -359,9 +359,9 @@ def main():
 
     samples = {}
     suites = {}
-    for key, t in d.iteritems():
+    for key, t in d.items():
         label = labels[key]
-        print label, len(t)
+        print(label, len(t))
 
         t = Winsorize(t, 0.0001)
         samples[label] = t

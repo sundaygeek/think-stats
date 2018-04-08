@@ -59,33 +59,33 @@ def MakeTables(data_dir='.'):
 def Summarize(pool, firsts, others):
     """Print various summary statistics."""
     
-    print
-    print 'Variance'
-    print 'First babies', firsts.var 
-    print 'Others', others.var
+    print()
+    print('Variance')
+    print(('First babies', firsts.var)) 
+    print(('Others', others.var))
 
     diff_mu = firsts.mu - others.mu
 
-    print 'Difference in mean', diff_mu
+    print(('Difference in mean', diff_mu))
 
     sigma = math.sqrt(pool.var)
 
-    print 'Pooled mean', pool.mu
-    print 'Pooled variance', pool.var
-    print 'Pooled sigma', sigma
+    print('Pooled mean', pool.mu)
+    print('Pooled variance', pool.var)
+    print('Pooled sigma', sigma)
 
-    print firsts.mu, others.mu
-    print firsts.trim, others.trim
+    print((firsts.mu, others.mu))
+    print((firsts.trim, others.trim))
     
-    live_lengths = pool.hist.GetDict().items()
+    live_lengths = list(pool.hist.GetDict().items())
     live_lengths.sort()
-    print 'Shortest lengths:'
+    print('Shortest lengths:')
     for weeks, count in live_lengths[:10]:
-        print weeks, count
+        print((weeks, count))
     
-    print 'Longest lengths:'
+    print('Longest lengths:')
     for weeks, count in live_lengths[-10:]:
-        print weeks, count
+        print((weeks, count))
     
 
 def MakeFigures(firsts, others):
@@ -153,7 +153,7 @@ def Shift(xs, shift):
 def MakeDiffFigure(firsts, others):
     """Plot the difference between the PMFs."""
 
-    weeks = range(35, 46)
+    weeks = list(range(35, 46))
     diffs = []
     for week in weeks:
         p1 = firsts.pmf.Prob(week)

@@ -18,10 +18,10 @@ def PercentileRank(scores, your_score):
 scores = [55, 66, 77, 88, 99]
 your_score = 88
 
-print 'score, percentile rank'
+print('score, percentile rank')
 for score in scores:
-    print score, PercentileRank(scores, score)
-print
+    print(score, PercentileRank(scores, score))
+print()
 
 def Percentile(scores, percentile_rank):
     """Computes the value that corresponds to a given percentile rank. """
@@ -39,8 +39,8 @@ def Percentile2(scores, percentile_rank):
     index = percentile_rank * (len(scores)-1) / 100
     return scores[index]
 
-print 'prank, score, score'
+print('prank, score, score')
 for percentile_rank in [0, 20, 25, 40, 50, 60, 75, 80, 100]:
-    print percentile_rank, 
-    print Percentile(scores, percentile_rank),
-    print Percentile2(scores, percentile_rank)
+    print(percentile_rank, end=' ') 
+    print(Percentile(scores, percentile_rank), end=' ')
+    print(Percentile2(scores, percentile_rank))

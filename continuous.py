@@ -39,7 +39,7 @@ def MakeExpoCdf():
     ps = [ExpoCdf(x, lam) for x in xs]
     
     percentile = -math.log(0.05) / lam
-    print 'Fraction <= ', percentile, ExpoCdf(lam, percentile)
+    print('Fraction <= ', percentile, ExpoCdf(lam, percentile))
 
     pyplot.clf()
     pyplot.plot(xs, ps, linewidth=2)
@@ -58,7 +58,7 @@ def MakeParetoCdf():
     xmin = 0.5
     alpha = 1.0
     ps = [ParetoCdf(x, alpha, xmin) for x in xs]
-    print 'Fraction <= 10', ParetoCdf(xmin, alpha, 10)
+    print('Fraction <= 10', ParetoCdf(xmin, alpha, 10))
     
     pyplot.clf()
     pyplot.plot(xs, ps, linewidth=2)
@@ -78,7 +78,7 @@ def MakeParetoCdf2():
     xmin = 100
     alpha = 1.7
     ps = [ParetoCdf(x, alpha, xmin) for x in xs]
-    print 'Median', ParetoMedian(xmin, alpha)
+    print('Median', ParetoMedian(xmin, alpha))
     
     pyplot.clf()
     pyplot.plot(xs, ps, linewidth=2)
@@ -115,11 +115,11 @@ def MakeNormalModel(weights):
     
     # estimate parameters: trimming outliers yields a better fit
     mu, var = thinkstats.TrimmedMeanVar(weights, p=0.01)
-    print 'Mean, Var', mu, var
+    print('Mean, Var', mu, var)
     
     # plot the model
     sigma = math.sqrt(var)
-    print 'Sigma', sigma
+    print('Sigma', sigma)
     xs, ps = RenderNormalCdf(mu, sigma, 200)
 
     pyplot.clf()

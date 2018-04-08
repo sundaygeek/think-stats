@@ -95,13 +95,13 @@ class Respondents(survey.Table):
         [d[r.sex].append(r.htm3) for r in self.records if r.htm3 != 'NA']
         [d['all'].append(r.htm3) for r in self.records if r.htm3 != 'NA']
         
-        print 'Height (cm):'
-        print 'key n     mean     var    sigma     cv'
-        for key, t in d.iteritems():
+        print('Height (cm):')
+        print('key n     mean     var    sigma     cv')
+        for key, t in d.items():
             mu, var = thinkstats.TrimmedMeanVar(t)
             sigma = math.sqrt(var)
             cv = sigma / mu
-            print key, len(t), mu, var, sigma, cv
+            print(key, len(t), mu, var, sigma, cv)
 
         return d
 
@@ -113,13 +113,13 @@ class Respondents(survey.Table):
         [d[r.sex].append(r.weight2) for r in self.records if r.weight2 != 'NA']
         [d['all'].append(r.weight2) for r in self.records if r.weight2 != 'NA']
 
-        print 'Weight (kg):'
-        print 'key n     mean     var    sigma     cv'
-        for key, t in d.iteritems():
+        print('Weight (kg):')
+        print('key n     mean     var    sigma     cv')
+        for key, t in d.items():
             mu, var = thinkstats.TrimmedMeanVar(t)
             sigma = math.sqrt(var)
             cv = sigma / mu
-            print key, len(t), mu, var, sigma, cv
+            print(key, len(t), mu, var, sigma, cv)
 
 
     def SummarizeWeightChange(self):
@@ -130,7 +130,7 @@ class Respondents(survey.Table):
         
         changes = [(curr - prev) for curr, prev in data]
             
-        print 'Mean change', thinkstats.Mean(changes)
+        print('Mean change', thinkstats.Mean(changes))
         
     
 def main(name, data_dir='.'):

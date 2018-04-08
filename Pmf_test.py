@@ -16,11 +16,11 @@ class Test(unittest.TestCase):
         t = [1, 2, 2, 3, 5]
         hist = Pmf.MakeHistFromList(t)
 
-        self.assertEquals(hist.Freq(1), 1)
-        self.assertEquals(hist.Freq(2), 2)
-        self.assertEquals(hist.Freq(3), 1)
-        self.assertEquals(hist.Freq(4), 0)
-        self.assertEquals(hist.Freq(5), 1)
+        self.assertEqual(hist.Freq(1), 1)
+        self.assertEqual(hist.Freq(2), 2)
+        self.assertEqual(hist.Freq(3), 1)
+        self.assertEqual(hist.Freq(4), 0)
+        self.assertEqual(hist.Freq(5), 1)
         
         pmf = Pmf.MakePmfFromHist(hist)
 
@@ -28,11 +28,11 @@ class Test(unittest.TestCase):
         self.checkPmf(pmf)
 
     def checkPmf(self, pmf):
-        self.assertAlmostEquals(pmf.Prob(1), 0.2)
-        self.assertAlmostEquals(pmf.Prob(2), 0.4)
-        self.assertAlmostEquals(pmf.Prob(3), 0.2)
-        self.assertAlmostEquals(pmf.Prob(4), 0.0)
-        self.assertAlmostEquals(pmf.Prob(5), 0.2)
+        self.assertAlmostEqual(pmf.Prob(1), 0.2)
+        self.assertAlmostEqual(pmf.Prob(2), 0.4)
+        self.assertAlmostEqual(pmf.Prob(3), 0.2)
+        self.assertAlmostEqual(pmf.Prob(4), 0.0)
+        self.assertAlmostEqual(pmf.Prob(5), 0.2)
 
     def testMakePmf(self):
         t = [1, 2, 2, 3, 5]
@@ -40,10 +40,10 @@ class Test(unittest.TestCase):
         self.checkPmf(pmf)
 
         d = pmf.GetDict()
-        self.assertAlmostEquals(d[2], 0.4)
+        self.assertAlmostEqual(d[2], 0.4)
         
         vals = pmf.Values()
-        self.assertEquals(sorted(vals), [1, 2, 3, 5])
+        self.assertEqual(sorted(vals), [1, 2, 3, 5])
 
         items = pmf.Items()
         d = dict(items)
@@ -79,7 +79,7 @@ class Test(unittest.TestCase):
         pmf = Pmf.MakePmfFromList(t)
         xs, ps = pmf.Render()
 
-        d = dict(zip(xs, ps))
+        d = dict(list(zip(xs, ps)))
         new_pmf = Pmf.MakePmfFromDict(d)
         self.checkPmf(new_pmf)
 
@@ -93,9 +93,9 @@ class Test(unittest.TestCase):
         var2 = pmf.Var()
         var3 = pmf.Var(mu2)
         
-        self.assertAlmostEquals(mu, mu2)
-        self.assertAlmostEquals(var, var2)
-        self.assertAlmostEquals(var, var3)
+        self.assertAlmostEqual(mu, mu2)
+        self.assertAlmostEqual(var, var2)
+        self.assertAlmostEqual(var, var3)
 
     def testMakePmfFromCdf(self):
         t = [1, 2, 2, 3, 5]

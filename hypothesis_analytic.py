@@ -29,32 +29,32 @@ def Test(actual1, actual2, model, iters=1000):
     mu1, mu2, delta = hypothesis.DifferenceInMean(actual1, actual2)
     delta = abs(delta)
 
-    print 'n:', n
-    print 'm:', m
-    print 'mu1', mu1
-    print 'mu2', mu2
-    print 'delta', delta
+    print('n:', n)
+    print('m:', m)
+    print('mu1', mu1)
+    print('mu2', mu2)
+    print('delta', delta)
     
     # compute the expected distribution of differences in sample mean
     mu_pooled, var_pooled = thinkstats.MeanVar(model)
-    print '(Mean, Var) of pooled data', mu_pooled, var_pooled
+    print('(Mean, Var) of pooled data', mu_pooled, var_pooled)
 
     f = 1.0 / n + 1.0 / m
     mu, var = (0, f * var_pooled)
-    print 'Expected Mean, Var of deltas', mu, var
+    print('Expected Mean, Var of deltas', mu, var)
 
     # compute the p-value of delta in the observed distribution
     sigma = math.sqrt(var)
     left = erf.NormalCdf(-delta, mu, sigma)
     right = 1 - erf.NormalCdf(delta, mu, sigma)
     pvalue = left+right
-    print 'Tails:', left, right
-    print 'p-value:', pvalue
+    print('Tails:', left, right)
+    print('p-value:', pvalue)
 
     # compare the mean and variance of resamples differences
     deltas = [hypothesis.Resample(model, model, n, m) for i in range(iters)]
     mean_var = thinkstats.MeanVar(deltas)
-    print '(Mean, Var) of resampled deltas', mean_var
+    print('(Mean, Var) of resampled deltas', mean_var)
 
     return pvalue
 

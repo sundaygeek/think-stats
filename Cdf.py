@@ -36,7 +36,7 @@ class Cdf(object):
 
         Note: in Python3, returns an iterator.
         """
-        return zip(self.xs, self.ps)
+        return list(zip(self.xs, self.ps))
 
     def Append(self, x, p):
         """Add an (x, p) pair to the end of this CDF.
@@ -188,7 +188,7 @@ def MakeCdfFromDict(d, name=''):
     Returns:
         Cdf object
     """
-    return MakeCdfFromItems(d.iteritems(), name)
+    return MakeCdfFromItems(iter(d.items()), name)
 
 
 def MakeCdfFromHist(hist, name=''):

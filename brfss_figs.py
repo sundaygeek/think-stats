@@ -6,7 +6,7 @@ License: GNU GPLv3 http://www.gnu.org/licenses/gpl.html
 """
 
 import brfss
-import cPickle
+import pickle
 import continuous
 import Cdf
 import math
@@ -34,10 +34,10 @@ class Respondents(brfss.Respondents):
         t = weights[:]
         t.sort()
         mu, var = thinkstats.TrimmedMeanVar(t)
-        print 'n, Mean, Var', len(weights), mu, var
+        print('n, Mean, Var', len(weights), mu, var)
         
         sigma = math.sqrt(var)
-        print 'Sigma', sigma
+        print('Sigma', sigma)
 
         xs, ps = continuous.RenderNormalCdf(mu, sigma, xmax)
         pyplot.plot(xs, ps, label='model', linewidth=4, color='0.7')

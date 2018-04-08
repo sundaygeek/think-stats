@@ -53,13 +53,13 @@ def main():
     evidence = 140, 110
 
     likelihood_biased = IntegrateLikelihood(evidence, suite, step)
-    print likelihood_biased
+    print(likelihood_biased)
 
     likelihood_unbiased = Likelihood(evidence, 0.5)
-    print likelihood_unbiased
+    print(likelihood_unbiased)
 
     ratio = likelihood_biased / likelihood_unbiased
-    print ratio
+    print(ratio)
 
     
 if __name__ == '__main__':

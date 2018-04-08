@@ -5,7 +5,7 @@ Copyright 2010 Allen B. Downey
 License: GNU GPLv3 http://www.gnu.org/licenses/gpl.html
 """
 
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 import myplot
 import Pmf
@@ -49,8 +49,9 @@ def CleanLine(line):
 def ReadResults(url=results):
     """Read results from coolrunning and return a list of tuples."""
     results = []
-    conn = urllib.urlopen(url)
+    conn = urllib.request.urlopen(url)
     for line in conn.fp:
+        line = line.decode('utf-8')
         t = CleanLine(line)
         if t:
             results.append(t)

@@ -89,7 +89,7 @@ def MakeIncomeDist(data):
         # add to the histogram
         x = midpoint(low, high)
         hist.Incr(x, number)
-        print x, number
+        print(x, number)
 
     pmf = Pmf.MakePmfFromHist(hist)
     cdf = Cdf.MakeCdfFromDict(pmf.GetDict())

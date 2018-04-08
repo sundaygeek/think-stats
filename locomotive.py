@@ -98,7 +98,7 @@ def main():
     Update(posterior, evidence)
     posterior.name = 'posterior'
 
-    print CredibleInterval(posterior, 90)
+    print(CredibleInterval(posterior, 90))
 
     # plot the posterior distribution
     pyplot.subplots_adjust(wspace=0.4, left=0.15)

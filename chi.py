@@ -89,8 +89,8 @@ def ChiSquared(expected, observed):
     Returns:
       float chi-squared statistic
     """
-    it = zip(itertools.chain(*expected), 
-             itertools.chain(*observed))
+    it = list(zip(itertools.chain(*expected), 
+             itertools.chain(*observed)))
     t = [(obs - exp)**2 / exp for exp, obs in it]
     return sum(t)
 
@@ -101,23 +101,23 @@ def Test(pool, firsts, others, num_trials=1000):
     funcs = [risk.ProbEarly, risk.ProbOnTime, risk.ProbLate]
     
     # get the observed frequency in each bin
-    print 'observed'
+    print('observed')
     observed = ComputeRows(firsts, others, funcs, probs=None)
-    print observed
+    print(observed)
 
     # compute the expected frequency in each bin
     tables = [firsts, others]
     probs = [func(pool.pmf) for func in funcs]
-    print 'expected'
+    print('expected')
     expected = ComputeRows(firsts, others, funcs, probs=probs)
-    print expected
+    print(expected)
 
     # compute the chi-squared stat
-    print 'chi-squared'
+    print('chi-squared')
     threshold = ChiSquared(expected, observed)
-    print threshold
+    print(threshold)
 
-    print 'simulated %d trials' % num_trials
+    print('simulated %d trials' % num_trials)
     chi2s = []
     count = 0
     for _ in range(num_trials):
@@ -128,12 +128,12 @@ def Test(pool, firsts, others, num_trials=1000):
         if chi2 >= threshold:
             count += 1
             
-    print 'max chi2'
-    print max(chi2s)
+    print('max chi2')
+    print(max(chi2s))
     
     pvalue = 1.0 * count / num_trials
-    print 'p-value'
-    print pvalue
+    print('p-value')
+    print(pvalue)
 
     return pvalue
 

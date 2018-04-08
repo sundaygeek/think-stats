@@ -141,7 +141,7 @@ def Underride(d, **options):
     if d is None:
         d = {}
 
-    for key, val in options.iteritems():
+    for key, val in list(options.items()):
         d.setdefault(key, val)
 
     return d
@@ -172,9 +172,9 @@ def Plot(xs, ys, style='', **options):
 
     if color_iter:
         try:
-            options = Underride(options, color=color_iter.next())
+            options = Underride(options, color=next(color_iter))
         except StopIteration:
-            print 'Warning: Brewer ran out of colors.'
+            print('Warning: Brewer ran out of colors.')
             Brewer.ClearIter()
         
     options = Underride(options, linewidth=3, alpha=0.8)
@@ -349,7 +349,7 @@ def Contour(obj, pcolor=False, contour=True, imshow=False, **options):
 
     Underride(options, linewidth=3, cmap=matplotlib.cm.Blues)
 
-    xs, ys = zip(*d.iterkeys())
+    xs, ys = list(zip(*iter(list(d.keys()))))
     xs = sorted(set(xs))
     ys = sorted(set(ys))
 
@@ -477,7 +477,7 @@ def SaveFormat(root, fmt='eps'):
       fmt: string format
     """
     filename = '%s.%s' % (root, fmt)
-    print 'Writing', filename
+    print(('Writing', filename))
     pyplot.savefig(filename, format=fmt, dpi=300)
 
 
@@ -505,7 +505,7 @@ save = Save
 def main():
     color_iter = Brewer.ColorGenerator(7)
     for color in color_iter:
-        print color
+        print(color)
 
 if __name__ == '__main__':
     main()
